@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Glantz Software Consulting LTD")]
 [assembly: AssemblyProduct("SharedLibrary")]
-[assembly: AssemblyCopyright("Copyright © Home Glantz Software Consulting LTD 2017")]
+[assembly: AssemblyCopyright("Copyright © Glantz Software Consulting LTD 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

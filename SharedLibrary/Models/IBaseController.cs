@@ -5,6 +5,7 @@ namespace K9.SharedLibrary.Models
 	{
 		IDataSetsHelper DropdownDataSets { get; }
 		IRoles Roles { get; }
+	    IAuthentication Authentication { get; }
 		string GetObjectName();
 	}
 }

@@ -203,11 +203,11 @@ namespace K9.SharedLibrary.Extensions
 				var attribute = firstOrDefault.GetCustomAttributes(typeof(ForeignKeyAttribute), true).FirstOrDefault() as ForeignKeyAttribute;
 				if (attribute == null)
 				{
-					throw new Exception(string.Format("No ForeignKey attribute is set on property {0}", foreignKeyColumn));
+					throw new Exception($"No ForeignKey attribute is set on property {foreignKeyColumn}");
 				}
 				return type.GetLinkedPropertyType(attribute.Name).Name;
 			}
-			throw new Exception(string.Format("Invalid property name {0}", foreignKeyColumn));
+			throw new Exception($"Invalid property name {foreignKeyColumn}");
 		}
 
 		public static bool LimitedByUser(this Type type)
@@ -222,7 +222,7 @@ namespace K9.SharedLibrary.Extensions
 
 		public static string GetForeignKeyName(this Type type)
 		{
-			return string.Format("{0}Id", type.Name);
+			return $"{type.Name}Id";
 		}
 
 		public static T GetAttribute<T>(this Type type)

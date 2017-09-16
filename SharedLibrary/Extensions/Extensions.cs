@@ -18,7 +18,7 @@ namespace K9.SharedLibrary.Extensions
 		public static string GetLocaleName(this CultureInfo cultureInfo)
 		{
 			var languageName = cultureInfo.TwoLetterISOLanguageName.ToLower();
-			return cultureInfo.IsNeutralCulture ? languageName : string.Format("{0}-{1}", languageName, new RegionInfo(cultureInfo.LCID).TwoLetterISORegionName.ToLower());
+			return cultureInfo.IsNeutralCulture ? languageName : $"{languageName}-{new RegionInfo(cultureInfo.LCID).TwoLetterISORegionName.ToLower()}";
 		}
 
 		public static string GetLocaleLanguage(this CultureInfo cultureInfo)
@@ -70,7 +70,7 @@ namespace K9.SharedLibrary.Extensions
 			{
 				return propInfo.GetValue(null, null).ToString();
 			}
-			throw new KeyNotFoundException(string.Format("The key {0} was not found.", key));
+			throw new KeyNotFoundException($"The key {key} was not found.");
 		}
 
 	    public static List<PropertyInfo> GetFileSourceProperties(this IObjectBase item)

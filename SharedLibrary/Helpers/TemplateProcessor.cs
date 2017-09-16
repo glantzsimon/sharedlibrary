@@ -10,7 +10,7 @@ namespace K9.SharedLibrary.Helpers
 
 		private static string GetPlaceHolder(string fieldName)
 		{
-			return string.Format("{{{0}}}", fieldName);
+			return $"{{{fieldName}}}";
 		}
 
 		public static string PopulateTemplate(string template, object data)

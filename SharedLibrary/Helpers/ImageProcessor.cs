@@ -94,7 +94,8 @@ namespace K9.SharedLibrary.Helpers
 				case "memorybmp":
 				case "tiff":
 				case "wmf":
-					saveToImagePath = Path.Combine(saveToImagePathFileInfo.Directory.FullName, string.Format("{0}.png", saveToImagePathFileInfo.GetFileNameWithoutExtension()));
+					saveToImagePath = Path.Combine(saveToImagePathFileInfo.Directory.FullName,
+					    $"{saveToImagePathFileInfo.GetFileNameWithoutExtension()}.png");
 					image.Save(saveToImagePath, ImageFormat.Png);
 					break;
 

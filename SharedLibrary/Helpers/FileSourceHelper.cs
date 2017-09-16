@@ -39,7 +39,7 @@ namespace K9.SharedLibrary.Helpers
 			}
 			else if (throwErrorIfDirectoryNotFound)
 			{
-				throw new DirectoryNotFoundException(string.Format("The directory {0} does not exist.", pathOnDisk));
+				throw new DirectoryNotFoundException($"The directory {pathOnDisk} does not exist.");
 			}
 		}
 

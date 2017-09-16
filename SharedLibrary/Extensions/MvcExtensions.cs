@@ -36,7 +36,7 @@ namespace K9.SharedLibrary.Extensions
 		{
 			if (dictionary.ContainsKey(key))
 			{
-				dictionary[key] += string.Format(" {0}", value);
+				dictionary[key] += $" {value}";
 			}
 			else
 			{
@@ -54,7 +54,8 @@ namespace K9.SharedLibrary.Extensions
 		public static string GetQueryString(this ControllerBase controller)
 		{
 			var queryString = controller.ControllerContext.RequestContext.HttpContext.Request.QueryString;
-			return queryString.AllKeys.Select(key => string.Format("{0}={1}", key, queryString.GetValue(key))).Aggregate("", (a, b) => a + (string.IsNullOrEmpty(b) ? "" : string.Format("&{0}", b)));
+			return queryString.AllKeys.Select(key => $"{key}={queryString.GetValue(key)}").Aggregate("", (a, b) => a + (string.IsNullOrEmpty(b) ? "" : $"&{b}"
+			                                                                                                       ));
 		}
 
 		public static IStatelessFilter GetStatelessFilter(this HtmlHelper helper)
@@ -96,7 +97,7 @@ namespace K9.SharedLibrary.Extensions
 		
 		public static string GetDateTimeDisplayFormat(this CultureInfo cultureInfo)
 		{
-			return string.Format("{0} {1}", cultureInfo.DateTimeFormat.ShortDatePattern, cultureInfo.DateTimeFormat.ShortTimePattern);
+			return $"{cultureInfo.DateTimeFormat.ShortDatePattern} {cultureInfo.DateTimeFormat.ShortTimePattern}";
 		}
 
 	}

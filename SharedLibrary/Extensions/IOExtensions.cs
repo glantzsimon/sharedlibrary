@@ -28,12 +28,12 @@ namespace K9.SharedLibrary.Extensions
 				order++;
 				length = length / 1024;
 			}
-			return String.Format("{0:0.0##} {1}", length, sizes[order]);
+			return $"{length:0.0##} {sizes[order]}";
 		}
 
 		public static string GetFileExtension(this string fileName)
 		{
-			return string.Format(".{0}", fileName.Split('.').Last());
+			return $".{fileName.Split('.').Last()}";
 		}
 	}
 }

@@ -30,7 +30,7 @@ namespace K9.SharedLibrary.Extensions
 
 		public static string ToDelimitedString(this IEnumerable<string> list, string delimiter = ",")
 		{
-			return list.Aggregate("", (a, b) => string.IsNullOrEmpty(a) ? b : string.Format("{0}{1} {2}", a, delimiter, b));
+			return list.Aggregate("", (a, b) => string.IsNullOrEmpty(a) ? b : $"{a}{delimiter} {b}");
 		}
 	}
 }

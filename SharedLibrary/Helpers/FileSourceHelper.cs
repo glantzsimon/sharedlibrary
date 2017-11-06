@@ -18,7 +18,26 @@ namespace K9.SharedLibrary.Helpers
 			_logger = logger;
 		}
 
-		public void LoadFiles(FileSource fileSource, bool throwErrorIfDirectoryNotFound = true)
+	    public void DeleteFilesFromDisk(FileSource fileSource)
+	    {
+	        if (Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileSource.PathToFiles)))
+	        {
+	            var filesToDelete = ContentHelper.GetFiles(fileSource.PathToFiles);
+	            filesToDelete.ForEach(f =>
+	            {
+	                try
+	                {
+	                    File.Delete(f.PathOnDisk);
+	                }
+	                catch (Exception ex)
+	                {
+	                    _logger.Error("DeleteFilesFromDisk => could not delete file {0}. {1}", f.FileName, ex.Message);
+	                }
+	            });
+            }
+	    }
+
+	    public void LoadFiles(FileSource fileSource, bool throwErrorIfDirectoryNotFound = true)
 		{
 			var pathOnDisk = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileSource.PathToFiles.ToPathOnDisk());
 			if (Directory.Exists(pathOnDisk))

@@ -10,8 +10,7 @@ namespace K9.SharedLibrary.Tests.Unit
 {
 	public class FileSourceHelperTests
 	{
-		
-		Mock<IPostedFileHelper> _postedFileHelper = new Mock<IPostedFileHelper>();
+	    readonly Mock<IPostedFileHelper> _postedFileHelper = new Mock<IPostedFileHelper>();
 
 		[Fact]
 		public void LoadFiles_ShouldThrowAnError_WhenPathDoesnotExist()

@@ -91,6 +91,7 @@
     <Compile Include="Attributes\LinkedColumnAttribute.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Enums\EFilesSourceFilter.cs" />
+    <Compile Include="Exceptions\FailedToMapPropertyException.cs" />
     <Compile Include="Exceptions\FileSourceFilePathNotSpecifiedException.cs" />
     <Compile Include="Extensions\ConfigurationFileExtensions.cs" />
     <Compile Include="Extensions\IOExtensions.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Helpers\ImageProcessor.cs" />
     <Compile Include="Helpers\IPostedFileHelper.cs" />
     <Compile Include="Helpers\Mailer.cs" />
+    <Compile Include="Helpers\ObjectMapper.cs" />
     <Compile Include="Helpers\PostedFileHelper.cs" />
     <Compile Include="Helpers\TemplateProcessor.cs" />
     <Compile Include="Authentication\RoleNames.cs" />

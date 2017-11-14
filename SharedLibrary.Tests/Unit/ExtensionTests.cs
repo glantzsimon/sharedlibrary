@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using K9.SharedLibrary.Extensions;
 using K9.SharedLibrary.Tests.Models;
@@ -45,6 +46,19 @@ namespace K9.SharedLibrary.Tests.Unit
 		{
 			Assert.True(typeof(Message).ImplementsIUserData());
 		}
+
+	    [Fact]
+	    public void JoinUrl_CorrectJoinsUrls()
+	    {
+	        var baseUrl = new Uri("https://test.com/test/mystuff/");
+	        var url = "Images/mycontent.jpg";
+
+	        var result = new Uri(baseUrl.GetLeftPart(UriPartial.Authority)).CombineWith(url);
+	        var result2 = baseUrl.CombineWith(url);
+
+            Assert.Equal("https://test.com/Images/mycontent.jpg", result);
+	        Assert.Equal("https://test.com/test/mystuff/Images/mycontent.jpg", result2);
+        }
 
 	}
 }

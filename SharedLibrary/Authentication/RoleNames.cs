@@ -5,7 +5,8 @@ namespace K9.SharedLibrary.Authentication
 	{
 		public const string Administrators = "Administrator";
 		public const string PowerUsers = "PowerUser";
-	}
+	    public const string DefaultUsers = "DefaultUser";
+    }
 
 	public class Permissions
 	{

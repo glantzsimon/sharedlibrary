@@ -21,6 +21,7 @@ namespace K9.SharedLibrary.Tests.Models
         public string Description { get; }
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
 
         public string GetForeignKeyName()
         {

@@ -34,6 +34,7 @@ namespace K9.SharedLibrary.Tests.Models
         }
 
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
 
         public string GetForeignKeyName()
         {

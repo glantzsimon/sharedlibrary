@@ -6,8 +6,9 @@ namespace K9.SharedLibrary.Models
 	{
 		int Id { get; set; }
 		string Name { get; set; }
-		
-		string GetForeignKeyName();
+	    bool IsDeleted { get; set; }
+
+	    string GetForeignKeyName();
 		string GetLocalisedDescription();
 		void UpdateAuditFields();
 		void UpdateName();

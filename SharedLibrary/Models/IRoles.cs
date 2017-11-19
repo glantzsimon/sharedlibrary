@@ -17,7 +17,7 @@ namespace K9.SharedLibrary.Models
 	    bool PermissionIsInRole(string permissionName, string roleName);
         void CreateRole(string roleName, bool isSystemStandard = false);
 		void CreatePermission(string permissionName, bool isSystemStandard = false);
-		void AddUserToRole(string username, string roleName);
-	    void AddPermissionsToRole(string permissionName, string roleName);
+		void AddUserToRole(string username, string roleName, bool isSystemStandard = false);
+	    void AddPermissionsToRole(string permissionName, string roleName, bool isSystemStandard = false);
 	}
 }

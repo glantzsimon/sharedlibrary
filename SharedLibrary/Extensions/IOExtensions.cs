@@ -13,7 +13,15 @@ namespace K9.SharedLibrary.Extensions
 			return fileName.Substring(0, fileName.LastIndexOf(".", StringComparison.Ordinal));
 		}
 
-		public static string ToPathOnDisk(this string value)
+	    public static string GetShortFileName(this FileInfo fileInfo)
+	    {
+	        var nameWithoutExt = GetFileNameWithoutExtension(fileInfo);
+	        var nameLength = nameWithoutExt.Length;
+	        var maxLength = 15;
+	        return $"{nameWithoutExt.Substring(0, nameLength < maxLength ? nameLength : maxLength)}....{fileInfo.Extension}";
+	    }
+
+        public static string ToPathOnDisk(this string value)
 		{
 			return value.Replace("/", "\\");
 		}

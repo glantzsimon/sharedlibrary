@@ -1,74 +1,54 @@
-﻿
+﻿using K9.SharedLibrary.Helpers;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using K9.SharedLibrary.Helpers;
+using K9.SharedLibrary.Extensions;
 
 namespace K9.SharedLibrary.Models
 {
-	public class AssetInfo : IAssetInfo
+    public class AssetInfo : IAssetInfo
 	{
-		private static readonly List<string> ImageFileExtensions = new List<string> { ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff" };
-		private readonly string _pathOnDisk;
 		private readonly string _baseWebPath;
-		private readonly FileInfo _fileInfo;
-		private readonly ImageInfo _imageInfo;
 
-		public AssetInfo(string pathOnDisk, string baseWebPath)
+	    public AssetInfo(string pathOnDisk, string baseWebPath)
 		{
-			_pathOnDisk = pathOnDisk;
+			PathOnDisk = pathOnDisk;
 			_baseWebPath = baseWebPath.EndsWith("/") ? baseWebPath.Remove(_baseWebPath.Length - 1) : baseWebPath;
-			_fileInfo = new FileInfo(_pathOnDisk);
-			_imageInfo = IsImage() ? ImageProcessor.GetImageInfo(_pathOnDisk) : null;
+			FileInfo = new FileInfo(PathOnDisk);
+			ImageInfo = IsImage() ? ImageProcessor.GetImageInfo(PathOnDisk) : null;
 		}
 
-		public string PathOnDisk
+		public string PathOnDisk { get; }
+
+	    public string FileName => FileInfo.Name;
+
+	    public string ShortFileName => FileInfo.GetShortFileName();
+
+        public string Src => $"/{_baseWebPath}/{FileName}";
+
+	    public FileInfo FileInfo { get; }
+
+	    public ImageInfo ImageInfo { get; }
+
+	    public string Extension => FileInfo.Extension;
+
+	    public bool IsImage()
 		{
-			get
-			{
-				return _pathOnDisk;
-			}
+			return HelperMethods.GetImageFileExtensions().Contains(FileInfo.Extension.ToLower());
 		}
 
-		public string FileName
-		{
-			get
-			{
-				return _fileInfo.Name;
-			}
-		}
+	    public bool IsVideo()
+	    {
+	        return HelperMethods.GetVideoFileExtensions().Contains(FileInfo.Extension.ToLower());
+	    }
 
-		public string Src
-		{
-			get
-			{
-				return $"/{_baseWebPath}/{FileName}";
-			}
-		}
+	    public bool IsAudio()
+	    {
+	        return HelperMethods.GetAudioFileExtensions().Contains(FileInfo.Extension.ToLower());
+	    }
 
-		public FileInfo FileInfo
+        public bool IsTextFile()
 		{
-			get { return _fileInfo; }
-		}
-
-		public ImageInfo ImageInfo
-		{
-			get { return _imageInfo; }
-		}
-
-		public string Extension
-		{
-			get { return _fileInfo.Extension; }
-		}
-
-		public bool IsImage()
-		{
-			return ImageFileExtensions.Contains(_fileInfo.Extension.ToLower());
-		}
-
-		public bool IsTextFile()
-		{
-			return _fileInfo.Extension.ToLower() == ".txt";
+			return FileInfo.Extension.ToLower() == ".txt";
 		}
 
 		public string GetNameWithoutExtensions()

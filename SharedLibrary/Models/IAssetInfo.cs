@@ -10,7 +10,9 @@ namespace K9.SharedLibrary.Models
 
 		string FileName { get; }
 
-		string Src { get; }
+	    string ShortFileName { get; }
+
+        string Src { get; }
 
 		FileInfo FileInfo { get; }
 
@@ -20,7 +22,11 @@ namespace K9.SharedLibrary.Models
 
 		bool IsImage();
 
-		bool IsTextFile();
+	    bool IsVideo();
+
+	    bool IsAudio();
+
+        bool IsTextFile();
 
 		string GetNameWithoutExtensions();
 

@@ -76,40 +76,40 @@ namespace K9.SharedLibrary.Helpers
 
 		}
 
-		private void SavePostedFiles(FileSource fileSource)
+	    private void UpdateUploadedFiles(FileSource fileSource)
+	    {
+	        if (fileSource.UploadedFiles != null)
+	        {
+	            var filesToDelete = ContentHelper.GetFiles(fileSource.PathToFiles)
+	                .Where(f => fileSource.UploadedFiles.Where(u => u.IsDeleted).Select(a => a.FileName).Contains(f.FileName)).ToList();
+	            filesToDelete.ForEach(f =>
+	            {
+	                try
+	                {
+	                    File.Delete(f.PathOnDisk);
+	                }
+	                catch (Exception ex)
+	                {
+	                    _logger.Error("UpdateUploadedFiles => could not delete file {0}. {1}", f.FileName, ex.Message);
+	                }
+	            });
+	        }
+	    }
+
+        private void SavePostedFiles(FileSource fileSource)
 		{
 			foreach (var httpPostedFileBase in fileSource.PostedFile)
 			{
 				if (httpPostedFileBase != null)
 				{
-					if (fileSource.GetAcceptedFileExtensions().Contains(httpPostedFileBase.FileName.GetFileExtension()))
+					if (fileSource.IsFileExtensionValid(httpPostedFileBase.FileName.GetFileExtension()))
 					{
 						_postedFileHelper.SavePostedFileToRelativePath(httpPostedFileBase, fileSource.PathToFiles);
 					}
 				}
 			}
 		}
-
-		private void UpdateUploadedFiles(FileSource fileSource)
-		{
-			if (fileSource.UploadedFiles != null)
-			{
-				var filesToDelete = ContentHelper.GetFiles(fileSource.PathToFiles)
-					.Where(f => fileSource.UploadedFiles.Where(u => u.IsDeleted).Select(a => a.FileName).Contains(f.FileName)).ToList();
-				filesToDelete.ForEach(f =>
-				{
-					try
-					{
-						File.Delete(f.PathOnDisk);
-					}
-					catch (Exception ex)
-					{
-						_logger.Error("UpdateUploadedFiles => could not delete file {0}. {1}", f.FileName, ex.Message);
-					}
-				});
-			}
-		}
-
+        
 		private void CreateDirectory(FileSource fileSource)
 		{
 			var pathOnDisk = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileSource.PathToFiles.ToPathOnDisk());

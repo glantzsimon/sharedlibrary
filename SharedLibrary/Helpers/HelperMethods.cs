@@ -9,7 +9,7 @@ namespace K9.SharedLibrary.Helpers
 		{
 			return new List<string>()
 			{
-				".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff"
+				".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff", ".webp", ".svg"
 			};
 		}
 
@@ -17,9 +17,17 @@ namespace K9.SharedLibrary.Helpers
 		{
 			return new List<string>()
 			{
-				".mpeg", ".mpg", ".mov", ".mp4"
+				".mpeg", ".mpg", ".mov", ".mp4", ".flv", ".3gp", ".ogv", ".webm", ".avi", ".wmv", ".swf", ".mkv"
 			};
 		}
 
-	}
+	    public static List<string> GetAudioFileExtensions()
+	    {
+	        return new List<string>()
+	        {
+	            ".mp3", ".wav", ".aac", ".flac", ".mid", ".ac3", ".ogg", ".mka", ".m4a", ".voc", ".au", ".amr", ".ra", ".wma", ".aiff"
+	        };
+	    }
+
+    }
 }

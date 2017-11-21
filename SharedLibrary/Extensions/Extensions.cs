@@ -21,7 +21,13 @@ namespace K9.SharedLibrary.Extensions
 			return cultureInfo.IsNeutralCulture ? languageName : $"{languageName}-{new RegionInfo(cultureInfo.LCID).TwoLetterISORegionName.ToLower()}";
 		}
 
-		public static string GetLocaleLanguage(this CultureInfo cultureInfo)
+	    public static string GetMetaLocaleName(this CultureInfo cultureInfo, string delimiter = "-")
+	    {
+	        var languageName = cultureInfo.TwoLetterISOLanguageName.ToLower();
+	        return cultureInfo.IsNeutralCulture ? languageName : $"{languageName}_{new RegionInfo(cultureInfo.LCID).TwoLetterISORegionName.ToUpper()}";
+	    }
+
+        public static string GetLocaleLanguage(this CultureInfo cultureInfo)
 		{
 			return cultureInfo.IsNeutralCulture ? cultureInfo.EnglishName : cultureInfo.Parent.EnglishName;
 		}
